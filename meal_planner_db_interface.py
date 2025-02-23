@@ -2,7 +2,6 @@ import psycopg2
 from config import load_config
 
 def insert_item(name, price):
-    """ Insert a new item into the items table """
     sql = """INSERT INTO items(name, price)
              VALUES(%s, %s) RETURNING item_id;"""
     item_id = None
@@ -10,13 +9,10 @@ def insert_item(name, price):
     try:
         with  psycopg2.connect(**config) as conn:
             with  conn.cursor() as cur:
-                # execute the INSERT statement
                 cur.execute(sql, (name,price))
-                # get the generated id back
                 rows = cur.fetchone()
                 if rows:
                     item_id = rows[0]
-                # commit the changes to the database
                 conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -24,7 +20,6 @@ def insert_item(name, price):
         return item_id
     
 def get_items():
-    """ Retrieve data from the vendors table """
     config  = load_config()
     result = None
     try:

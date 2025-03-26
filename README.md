@@ -1,3 +1,3 @@
-# Meal Planner
+# Tesco Price Scraper
 
-Skeleton repository consisting of python application which will eventually build a meal plan based on budget and calorie goals.
+Python project which uses Selenium and BeautifulSoup to web scrape the names and prices of grocery items from the Tesco website.
